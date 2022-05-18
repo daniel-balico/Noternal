@@ -13,7 +13,7 @@ function NoteDetailModal({ cancelButtonRef, openModal, setOpenModal, noteDetails
 
 	return (
 		<Modal cancelButtonRef={ cancelButtonRef } openModal={ openModal } setOpenModal={ setOpenModal }>
-			<div className={`${noteDetails.noteColor} relative p-5 max-w-max min-w-[256px] rounded`}>
+			<div className={`${noteDetails.noteColor} relative p-5 sm:max-w-max sm:min-w-[256px] rounded`}>
 				<button onClick={() => setOpenModal(false)} className="absolute h-4 w-4 text-white right-1 top-1 hover:scale-125 transition-all duration-300">
 					<Close />
 				</button>

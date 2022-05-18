@@ -11,10 +11,10 @@ function Note({noteID, noteColor, noteTitle, noteDescription, noteDate, handleDe
 
 	const cancelButtonRef = useRef(null);
 
-	const getDate = () => {
-		const date = new Date(noteDate);
-		return date.toLocaleDateString("en-US")
-	}
+	// const getDate = () => {
+	// 	const date = new Date(noteDate);
+	// 	return date.toLocaleDateString("en-US")
+	// }
 
 	const _handleEditNote = (id, values) => {
 		handleEditNote(id, values);
@@ -22,7 +22,7 @@ function Note({noteID, noteColor, noteTitle, noteDescription, noteDate, handleDe
 	}
 
 	return (
-		<div className={`${noteColor} opacity-80 cursor-pointer relative text-left h-36 hover:scale-105 transition-all duration-500 text-white p-5 block object-cover object-center rounded overflow-hidden`}>
+		<div className={`${noteColor} cursor-pointer relative text-left h-36 hover:scale-105 transition-all duration-500 text-white p-5 block object-cover object-center rounded overflow-hidden`}>
 			<button onClick={() => setOpenNoteDetailModal(true)} className="absolute h-4 w-4 right-12 top-2 hover:scale-125 transition-all duration-300">
 				<Eye />
 			</button>

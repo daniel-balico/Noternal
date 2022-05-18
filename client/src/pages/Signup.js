@@ -26,10 +26,16 @@ function Signup() {
 			 		setErrorMessage(res.data.message);
 			 		const errorMessageDoc = document.getElementById("errorMessage");
 			 		errorMessageDoc.classList.remove('hidden');
+
+			 		errorMessageDoc.classList.add('animate-bounce');
+
+			 		setTimeout(() => {
+			 			errorMessageDoc.classList.remove('animate-bounce');
+			 		}, 250);
 			 	}
 			 	else window.location.replace('/signin');
 
-			  }) .catch(error => console.log(error));
+			  }).catch(error => console.log(error));
 	}
 
 	useEffect(() => {
@@ -67,10 +73,8 @@ function Signup() {
 							<TextField name="username" type="text" placeholder="Username"/>
 							<TextField name="email" type="email" placeholder="Email"/>
 
-							<div className="grid grid-cols-2 gap-2">
-								<TextField name="password" type="password" placeholder="Password"/>
-								<TextField name="confirmPassword" type="password" placeholder="Confirm Password"/>
-							</div>
+							<TextField name="password" type="password" placeholder="Password"/>
+							<TextField name="confirmPassword" type="password" placeholder="Confirm Password"/>
 
 							<button type="submit" className="bg-gray-900 mt-2 rounded hover:bg-gray-800 w-full transition-all py-2 text-white tracking-wider">Sign up</button>
 							

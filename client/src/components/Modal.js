@@ -34,7 +34,7 @@ function Modal(props) {
                         leave="ease-in duration-200"
                         leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                         leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
-                        <div className="inline-block align-bottom text-left overflow-hidden shadow-xl transform transition-all rounded sm:my-8 sm:align-middle w-10/12 sm:w-auto sm:max-w-lg">
+                        <div className="inline-block w-full align-bottom text-left overflow-hidden shadow-xl transform transition-all rounded sm:my-8 sm:align-middle w-10/12 sm:w-auto sm:max-w-lg">
                       		{ props.children }
                         </div>
                     </Transition.Child>

@@ -14,7 +14,7 @@ function TextField({ ...props }) {
 
 			  { <ErrorMessage name={field.name} 
 			   				 component="p" 
-			   				 className=" bottom-0 text-xs font-light text-red-600"/> }
+			   				 className="bottom-0 text-xs font-normal text-red-600"/> }
 		</div>
 	)
 }

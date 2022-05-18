@@ -12,7 +12,7 @@ let User = require('./../models/user.model');
 router.route('/signin').post((req, res) => {
 	const { username, password } = req.body;
 
-	User.findOne({username: username})
+	User.findOne({username: username.toLowerCase()})
 		.then(query => {
 			if (!query) return res.json({ message: "Invalid username or password.",
 								  			success: false })
@@ -152,6 +152,20 @@ router.route('/details/:type/:data').get((req, res) => {
 		res.json({success: false, message: 'Invalid type.'});
 	}
 	
+})
+
+router.route('/checkpassword').post(auth, async (req, res) => {
+	const currentPassword = req.body.currentPassword;
+
+	User.findOne({username: req.user.username})
+		.then(query => {
+			bcrypt.compare(currentPassword, query.password)
+				  .then(isCorrect => {
+				  	if(isCorrect) res.json({ correct: true })
+				  	else res.json({ correct: false })
+				  })
+
+		}).catch(err => { res.json({ success: false, message: err.messsage })})
 })
 
 router.route('/changepassword').post(async (req, res) => {

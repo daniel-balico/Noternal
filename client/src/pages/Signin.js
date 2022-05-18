@@ -31,9 +31,14 @@ function Signin() {
 			 		setErrorMessage(res.data.message);
 			 		const errorMessageDoc = document.getElementById("errorMessage");
 			 		errorMessageDoc.classList.remove('hidden');
+			 		errorMessageDoc.classList.add('animate-bounce');
+
+			 		setTimeout(() => {
+			 			errorMessageDoc.classList.remove('animate-bounce');
+			 		}, 250);
 			 	}
 			 	
-			 }) .catch(err => console.log(err) );
+			 }).catch(err => console.log(err) );
 	}
 
 	useEffect(() => {
@@ -42,7 +47,7 @@ function Signin() {
 
 	return (
 		<Layout>
-			<div id="errorMessage" className="hidden animate-pulse shadow bg-gray-300 py-1 text-gray-900 font-normal tracking-widest absolute px-2 right-0 top-2">
+			<div id="errorMessage" className="hidden animate-pulse shadow bg-red-300 py-1 text-gray-900 font-normal tracking-widest absolute px-2 right-0 top-2">
 				<p className="text-center text-xs">{errorMessage}</p>
 			</div>
 

@@ -16,7 +16,7 @@ function Landing() {
 					<button onClick={() => navigate('/signup') } className="border py-2 text-lg sm:text-xl border-gray-900 bg-gray-900 text-white  hover:border-gray-700 hover:bg-gray-700 transition-all duration-300">Sign up</button>
 				</div>
 
-				<p className="font-thin text-center mt-1 text-xs">Developed by Daniel Shan Balico</p>
+				<p className="font-light text-center mt-1 text-xs">Developed by Daniel Shan Balico</p>
 			</div>
 		</div>
 	)

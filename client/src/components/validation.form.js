@@ -20,6 +20,10 @@ export const validateSignup = Yup.object({
 
 	password: Yup.string()
 				 .min(8, 'Must at least 8 characters long')
+				 .matches(/^(?=.*[a-z])/, 'Must contain at least one lowercase character')
+				 .matches(/^(?=.*[A-Z])/, 'Must contain at least one uppercase character')
+				 .matches(/^(?=.*[0-9])/, 'Must contain at least one number')
+				 .matches(/^(?=.*[!@#%&])/, 'Must contain at least one special character')
 				 .required('Password required*'),
 
 	confirmPassword: Yup.string()
@@ -55,21 +59,47 @@ export const validateCode = Yup.object({
 })
 
 // Forgot Password Page
-export const validateUsername = Yup.object({
+export const forgot_validateUsername = Yup.object({
 	username: Yup.string()
 				 .max(15, 'Must be 15 characters or less')
 				 .required('Username required*'),
 })
 
-export const validateEmail = Yup.object({
+export const forgot_validateEmail = Yup.object({
 	email: Yup.string()
 			  .email('Invalid email*')
 			  .required('Email Required*'),
 })
 
-export const validateChangePassword = Yup.object({
+export const forgot_validateChangePassword = Yup.object({
 	password: Yup.string()
 				 .min(8, 'Must at least 8 characters long')
+				 .matches(/^(?=.*[a-z])/, 'Must contain at least one lowercase character')
+				 .matches(/^(?=.*[A-Z])/, 'Must contain at least one uppercase character')
+				 .matches(/^(?=.*[0-9])/, 'Must contain at least one number')
+				 .matches(/^(?=.*[!@#%&])/, 'Must contain at least one special character')
+				 .required('Password required*'),
+
+	confirmPassword: Yup.string()
+					    .oneOf([Yup.ref('password'), null], "Password doesn't match")
+					    .required('Confirmation required*'),
+})
+
+export const validateChangePassword = Yup.object({
+	currentPassword: Yup.string()
+				 .min(8, 'Must at least 8 characters long')
+				 .matches(/^(?=.*[a-z])/, 'Must contain at least one lowercase character')
+				 .matches(/^(?=.*[A-Z])/, 'Must contain at least one uppercase character')
+				 .matches(/^(?=.*[0-9])/, 'Must contain at least one number')
+				 .matches(/^(?=.*[!@#%&])/, 'Must contain at least one special character')
+				 .required('Password required*'),
+
+	password: Yup.string()
+				 .min(8, 'Must at least 8 characters long')
+				 .matches(/^(?=.*[a-z])/, 'Must contain at least one lowercase character')
+				 .matches(/^(?=.*[A-Z])/, 'Must contain at least one uppercase character')
+				 .matches(/^(?=.*[0-9])/, 'Must contain at least one number')
+				 .matches(/^(?=.*[!@#%&])/, 'Must contain at least one special character')
 				 .required('Password required*'),
 
 	confirmPassword: Yup.string()

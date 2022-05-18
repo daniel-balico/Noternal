@@ -15,6 +15,9 @@ export const verifyAccount = (data) => {
 export const changePassword = (data) => {
 	   return axios.post(`${url}/user/changepassword`, data, options); }
 
+export const checkPassword = (data) => {
+	   return axios.post(`${url}/user/checkpassword`, data, options); }
+
 export const getUser = (type, data) => {
 	   return axios.get(`${url}/user/details/${type}/${data}`, options); }
 

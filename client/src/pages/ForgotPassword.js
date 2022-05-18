@@ -6,12 +6,10 @@ import { ArrowLeft } from './../components/Icons';
 
 import { Formik, Form } from 'formik';
 import TextField from './../components/TextField';
-import { validateUsername, validateEmail, validateChangePassword, validateCode } from './../components/validation.form';
+import { forgot_validateUsername, forgot_validateEmail, forgot_validateChangePassword, validateCode } from './../components/validation.form';
 
 import { getUser, changePassword } from './../services/auth.service';
 import { sendCode, encrypt, compare } from './../services/utility.service';
-
-import bcryptjs from 'bcryptjs';
 
 function ForgotPassword() {
 	const navigate = useNavigate();
@@ -33,6 +31,12 @@ function ForgotPassword() {
 		setErrorMessage(message);
  		const errorMessageDoc = document.getElementById("errorMessage");
  		errorMessageDoc.classList.remove('hidden');
+
+ 		errorMessageDoc.classList.add('animate-bounce');
+
+ 		setTimeout(() => {
+ 			errorMessageDoc.classList.remove('animate-bounce');
+ 		}, 250);
 	}
 
 	// Hide an error message.
@@ -121,7 +125,7 @@ function ForgotPassword() {
 
 							<p className="mt-2">You've successfully changed the password of <span className="font-normal">{ userQuery.username }</span>. Please click the button below to continue.</p>
 
-							<button onClick={() => navigate('/signin')} className="border py-2 text-lg sm:text-xl border-gray-900 bg-gray-900 text-white  hover:border-gray-700 hover:bg-gray-700 transition-all duration-300 w-full mt-4">Click here to go back to sign in</button>
+							<button onClick={() => navigate('/signin')} className="border py-2 text-lg sm:text-xl border-gray-900 bg-gray-900 text-white  hover:border-gray-700 hover:bg-gray-700 transition-all duration-300 w-full mt-4">Click here to sign in</button>
 						</>
 					): (
 						<>
@@ -138,7 +142,7 @@ function ForgotPassword() {
 										<Formik 
 											key={3}
 											initialValues = {{ password: '', confirmPassword: ''}}	
-											validationSchema = { validateChangePassword } 
+											validationSchema = { forgot_validateChangePassword } 
 											onSubmit={ handleChangePassword }>
 											{ formik => (
 												<Form className="mt-4">
@@ -162,7 +166,7 @@ function ForgotPassword() {
 												onSubmit={ handleSubmitCode }>
 												{ formik => (
 													<Form className="mt-4">
-														<TextField name="code" type="text" placeholder="12345"/>
+														<TextField name="code" type="number" placeholder="Enter code here"/>
 													
 														<button type="submit" className="bg-gray-900 mt-2 rounded hover:bg-gray-800 w-full transition-all py-2 text-white tracking-wider">Submit</button>
 													</Form>
@@ -177,7 +181,7 @@ function ForgotPassword() {
 												<Formik 
 													key={1}
 													initialValues = {{ email: ''}}	
-													validationSchema = { validateEmail } 
+													validationSchema = { forgot_validateEmail } 
 													onSubmit={ handleSubmitEmail }>
 													{ formik => (
 														<Form className="mt-4">
@@ -198,7 +202,7 @@ function ForgotPassword() {
 												<Formik 
 													key={0}
 													initialValues = {{ username: ''}}	
-													validationSchema = { validateUsername } 
+													validationSchema = { forgot_validateUsername } 
 													onSubmit={ handleSubmitUsername }>
 													{ formik => (
 														<Form className="mt-4">

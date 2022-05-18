@@ -39,6 +39,10 @@ function Verification() {
 				setErrorMessage(res.data.message);
 		 		const errorMessageDoc = document.getElementById("errorMessage");
 		 		errorMessageDoc.classList.remove('hidden');
+
+		 		errorMessageDoc.classList.add('animate-bounce');
+
+		 		  
 			}
 		})
 	}
@@ -61,7 +65,7 @@ function Verification() {
 					onSubmit={(values) => handleSubmit(values) }>
 					{ formik => (
 						<Form className="mt-4">
-							<TextField name="code" type="text" placeholder="1234"/>
+							<TextField name="code" type="number" placeholder="Enter code here"/>
 						
 							<button type="submit" className="bg-gray-900 mt-2 rounded hover:bg-gray-800 w-full transition-all py-2 text-white tracking-wider">Verify</button>
 						</Form>

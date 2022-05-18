@@ -1,5 +1,5 @@
 import React from 'react'
-import { ErrorMessage, useField } from 'formik';
+import { useField } from 'formik';
 
 function RadioButtonField({ ...props }) {
 	const [ field, meta ] = useField(props);
