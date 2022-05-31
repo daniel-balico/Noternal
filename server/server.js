@@ -9,7 +9,7 @@ require('dotenv').config();
 
 const app = express();
 const port = process.env.PORT || 5000;
-const host = process.env.HOST || '0.0.0.0';
+const host = '0.0.0.0';
 const mockMongoose = new MockMongoose(mongoose);
 const ENVIRONMENT = 'dev';
 
