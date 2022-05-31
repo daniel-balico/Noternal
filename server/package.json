@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "serve -s build",
     "test": "mocha tests/*.test.js --recursive --exit --timeout 10000"
   },
   "author": "",
@@ -25,6 +25,7 @@
     "mocha": "^9.2.2",
     "mock-mongoose": "^8.0.1-a",
     "mongo-mock": "^4.1.0",
+    "serve": "^13.0.2",
     "xhr2": "^0.2.1"
   }
 }
