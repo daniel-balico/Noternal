@@ -9,6 +9,7 @@ require('dotenv').config();
 
 const app = express();
 const port = process.env.PORT || 5000;
+const host = process.env.HOST || '0.0.0.0';
 const mockMongoose = new MockMongoose(mongoose);
 const ENVIRONMENT = 'dev';
 
@@ -63,7 +64,7 @@ app.use('/user', UserRouter);
 app.use('/note', NoteRouter);
 app.use('/utility', UtilityRouter);
 
-app.listen(port, () => {
+app.listen(port, host, () => {
 	console.log(`\nServer is running in port: \x1b[32m${port}\x1b[0m\n`);
 })
 
