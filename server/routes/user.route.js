@@ -12,7 +12,16 @@ let User = require('./../models/user.model');
 router.route('/signin').post((req, res) => {
 	const { username, password } = req.body;
 
-	User.findOne({username: username.toLowerCase()})
+	const validateEmail = (input) => {
+		return input.match(
+			/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+		);
+	};
+
+	User.findOne(validateEmail(username) ? 
+							  { email: username.toLowerCase() } 
+						    : { username: username.toLowerCase() })
+
 		.then(query => {
 			if (!query) return res.json({ message: "Invalid username or password.",
 								  			success: false })

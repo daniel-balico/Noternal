@@ -10,7 +10,7 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 5000;
 const mockMongoose = new MockMongoose(mongoose);
-const ENVIRONMENT = 'prod';
+const ENVIRONMENT = 'dev';
 
 // MIDDLESWARES
 app.use(express.json(),

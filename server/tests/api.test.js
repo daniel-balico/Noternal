@@ -91,7 +91,7 @@ describe('User Route', () => {
 
 		it('should verify user', done => {
 			chai.request(server)
-				.post('/user/verify_account')
+				.post('/user/verification')
 				.set({ Authorization: token, 'x-noternal-api-key': process.env.API_KEY })
 				.send({
 					code: 1234
@@ -174,6 +174,53 @@ describe('Note Route', () => {
 				.end((err, res) => {
 					res.should.have.status(200);
 					res.body.should.have.property('success').eq(true);
+					done();
+				});
+		});
+	});
+});
+
+describe('Utility Route', () => {
+	describe('POST /utility/encrypt', () => {
+		it('should encrypt the input', done => {
+			chai.request(server)
+				.post('/utility/encrypt')
+				.set({ 'x-noternal-api-key': process.env.API_KEY })
+				.send({input: 'test'})
+				.end((err, res) => {
+					res.should.have.status(200);
+					res.body.should.have.property('success').eq(true);
+					res.body.should.have.property('result');
+					done();
+				});
+		});
+	});
+
+	describe('POST /utility/compare', () => {
+		it('should result in a correct comparison', done => {
+			chai.request(server)
+				.post('/utility/compare')
+				.set({ 'x-noternal-api-key': process.env.API_KEY })
+				.send({x: 'test',
+					   y: '$2b$10$nx3EHc310zM6//JcNdqp7.imkIgMfhlhFkS/Dh3MAztLxtI9rPZgu'})
+				.end((err, res) => {
+					res.should.have.status(200);
+					res.body.should.have.property('success').eq(true);
+					res.body.should.have.property('match').eq(true);
+					done();
+				});
+		});
+
+		it('should result in a wrong comparison', done => {
+			chai.request(server)
+				.post('/utility/compare')
+				.set({ 'x-noternal-api-key': process.env.API_KEY })
+				.send({x: 'test',
+					   y: '$2b$10$8VDnsgkX4qOLZup/VPkeOu.pGVdUd/IUqUfUpWhdeIsgoQY6ViiwS'})
+				.end((err, res) => {
+					res.should.have.status(200);
+					res.body.should.have.property('success').eq(true);
+					res.body.should.have.property('match').eq(false);
 					done();
 				});
 		});

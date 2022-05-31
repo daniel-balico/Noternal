@@ -29,8 +29,8 @@ router.route('/compare').post(async (req, res) => {
 
 	bcrypt.compare(x, y)
 		  .then(isCorrect => {
-		  	if (isCorrect) res.json({ match: true })
-		  	else 		   res.json({ match: false })
+		  	if (isCorrect) res.json({ success: true, match: true })
+		  	else 		   res.json({ success: true, match: false })
 		  })
 		  .catch(err => res.json({ success: false, message: err.message }))
 })
