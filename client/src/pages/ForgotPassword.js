@@ -193,7 +193,7 @@ function ForgotPassword() {
 												</Formik> </>
 										): ( // 1st Phase: where the user should enter the username of the account he want's to change the password
 											<> 
-												<button onClick={ () => navigate('/') } className="absolute top-2 text-gray-900 hover:scale-110 duration-300 transition-all left-4">
+												<button onClick={ () => navigate('/signin') } className="absolute top-2 text-gray-900 hover:scale-110 duration-300 transition-all left-4">
 													<ArrowLeft className="h-6 w-6"/>
 												</button>
 												

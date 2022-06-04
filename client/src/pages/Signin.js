@@ -66,7 +66,7 @@ function Signin() {
 					onSubmit={(values) => handleSignin(values) }>
 					{ formik => (
 						<Form className="mt-4">
-							<TextField name="username" type="text" placeholder="Username"/>
+							<TextField name="username" type="text" placeholder="Username or Email"/>
 							<TextField name="password" type="password" placeholder="Password"/>
 
 							<button type="submit" className="bg-gray-900 mt-2 rounded hover:bg-gray-800 w-full transition-all py-2 text-white tracking-wider">Sign in</button>
