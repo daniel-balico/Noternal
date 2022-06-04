@@ -2,16 +2,14 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
-const MockMongoose = require('mock-mongoose').MockMongoose;
 const check_key = require('./middlewares/check_key.middleware');
 
 require('dotenv').config();
 
 const app = express();
 const port = process.env.PORT || 5000;
-const host = '0.0.0.0';
 const mockMongoose = new MockMongoose(mongoose);
-const ENVIRONMENT = 'dev';
+const ENVIRONMENT = 'prod';
 
 // MIDDLESWARES
 app.use(express.json(),
@@ -24,6 +22,8 @@ app.use(express.json(),
 const uri = process.env.ATLAS_URI;
 
 if(ENVIRONMENT === 'dev') {
+	const MockMongoose = require('mock-mongoose').MockMongoose;
+
 	mockMongoose.prepareStorage()
 		.then(() => {
 			mongoose.connect(uri, () => {
@@ -64,7 +64,7 @@ app.use('/user', UserRouter);
 app.use('/note', NoteRouter);
 app.use('/utility', UtilityRouter);
 
-app.listen(port, host, () => {
+app.listen(port,() => {
 	console.log(`\nServer is running in port: \x1b[32m${port}\x1b[0m\n`);
 })
 
