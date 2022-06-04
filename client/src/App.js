@@ -8,7 +8,7 @@ import ForgotPassword from './pages/ForgotPassword';
 import Verification from './pages/Verification';
 import Main from './pages/Main';
 import Profile from './pages/Profile';
-
+//
 function App() {
   return (
 	<BrowserRouter>
