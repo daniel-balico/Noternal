@@ -3,6 +3,7 @@ const cors = require('cors');
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
 const check_key = require('./middlewares/check_key.middleware');
+const MockMongoose = require('mock-mongoose').MockMongoose;
 
 require('dotenv').config();
 
@@ -22,8 +23,6 @@ app.use(express.json(),
 const uri = process.env.ATLAS_URI;
 
 if(ENVIRONMENT === 'dev') {
-	const MockMongoose = require('mock-mongoose').MockMongoose;
-
 	mockMongoose.prepareStorage()
 		.then(() => {
 			mongoose.connect(uri, () => {
